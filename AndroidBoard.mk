@@ -12,17 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#
-# AndroidBoard.mk is a legacy mechanism to deal with a few
-# edge-cases that can't be managed otherwise. No new rules
-# should be added to this file.
-#
-
 LOCAL_PATH := $(call my-dir)
 
-# Least specific includes go first, so that they can get
-# overridden further down
 include $(CLEAR_VARS)
+
+ALL_PREBUILT += $(INSTALLED_KERNEL_TARGET)
 
 # include the non-open-source counterpart to this file
 -include vendor/htc/m4/AndroidBoardVendor.mk

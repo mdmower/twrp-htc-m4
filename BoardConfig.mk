@@ -12,27 +12,28 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#
-# This file sets variables that control the way modules are built
-# thorughout the system. It should not be used to conditionally
-# disable makefiles (the proper mechanism to control what gets
-# included in a build is to use PRODUCT_PACKAGES in a product
-# definition file).
-#
+USE_CAMERA_STUB := true
 
-# WARNING: This line must come *before* including the proprietary
-# variant, so that it gets overwritten by the parent (which goes
-# against the traditional rules of inheritance).
-
-# inherit from common msm8960
--include device/htc/msm8960-common/BoardConfigCommon.mk
-
-# Include Path
-TARGET_SPECIFIC_HEADER_PATH := device/htc/m4/include
+# inherit from the proprietary version
+-include vendor/htc/m4/BoardConfigVendor.mk
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := m4
+TARGET_NO_BOOTLOADER := true
+
+# Platform
 TARGET_BOARD_PLATFORM := msm8960
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
+
+# Architecture
+TARGET_ARCH := arm
+TARGET_ARCH_VARIANT := armv7-a-neon
+TARGET_ARCH_VARIANT_CPU := cortex-a9
+TARGET_CPU_ABI := armeabi-v7a
+TARGET_CPU_ABI2 := armeabi
+TARGET_CPU_SMP := true
+TARGET_CPU_VARIANT := krait
+TARGET_USE_KRAIT_BIONIC_OPTIMIZATION := true
 
 # Kernel
 BOARD_KERNEL_BASE := 0x80600000
@@ -41,50 +42,6 @@ BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=m4 androi
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01600000
 TARGET_KERNEL_CONFIG := m4_defconfig
 TARGET_KERNEL_SOURCE := kernel/htc/msm8960
-
-# Audio
-BOARD_USES_FLUENCE_INCALL := true # use DMIC in call only
-BOARD_USES_SEPERATED_AUDIO_INPUT := true # use distinct voice recog/camcorder use cases
-BOARD_USES_SEPERATED_VOICE_SPEAKER := true # use distinct voice speaker user case
-BOARD_USES_SEPERATED_VOIP := true # use distinct VOIP use cases
-BOARD_HAVE_HTC_CSDCLIENT := true
-
-# Bluetooth
-BOARD_HAVE_BLUETOOTH_BCM := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/htc/m4/bluetooth
-BOARD_BLUEDROID_VENDOR_CONF := device/htc/m4/bluetooth/libbt_vndcfg.txt
-BOARD_BLUETOOTH_USES_HCIATTACH_PROPERTY := false
-
-# Camera
-BOARD_NEEDS_MEMORYHEAPPMEM := true
-COMMON_GLOBAL_CFLAGS += -DHTC_CAMERA_HARDWARE
-COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
-USE_DEVICE_SPECIFIC_CAMERA := true
-
-# Graphics
-TARGET_DISPLAY_INSECURE_MM_HEAP := true
-
-# GPS
-BOARD_HAVE_NEW_QC_GPS := true
-
-# RIL
-BOARD_PROVIDES_LIBRIL := true
-COMMON_GLOBAL_CFLAGS += -DNEW_LIBRIL_HTC
-
-# USB
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
-
-# Wifi
-WPA_SUPPLICANT_VERSION           := VER_0_8_X
-BOARD_WLAN_DEVICE		 := bcmdhd
-BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
-BOARD_HOSTAPD_DRIVER             := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
-WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/bcmdhd/parameters/firmware_path"
-WIFI_DRIVER_FW_PATH_STA          := "/system/etc/firmware/fw_bcm4334.bin"
-WIFI_DRIVER_FW_PATH_AP           := "/system/etc/firmware/fw_bcm4334_apsta.bin"
-WIFI_DRIVER_FW_PATH_P2P          := "/system/etc/firmware/fw_bcm4334_p2p.bin"
 
 # cat /proc/emmc
 #dev:        size     erasesize name
@@ -113,21 +70,19 @@ BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16776704
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1610611712
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 13220446208
 BOARD_FLASH_BLOCK_SIZE := 131072
-BOARD_VOLD_MAX_PARTITIONS := 36
 
 # Vold
-BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
+BOARD_VOLD_MAX_PARTITIONS := 36
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
 
 # Recovery
-TARGET_RECOVERY_FSTAB := device/htc/m4/rootdir/etc/fstab.m4
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
 TARGET_USERIMAGES_USE_EXT4 := true
+BOARD_CHARGING_MODE_BOOTING_LPM := /sys/htc_lpm/lpm_mode
 
 # TWRP
 DEVICE_RESOLUTION := 720x1280
-TW_INCLUDE_DUMLOCK := true
 RECOVERY_SDCARD_ON_DATA := true
 BOARD_HAS_NO_REAL_SDCARD := true
 TW_INTERNAL_STORAGE_PATH := "/data/media"
@@ -137,6 +92,5 @@ TW_EXTERNAL_STORAGE_MOUNT_POINT := "usb-otg"
 TW_NO_USB_STORAGE := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-
-# inherit from the proprietary version
--include vendor/htc/m4/BoardConfigVendor.mk
+TW_INCLUDE_JB_CRYPTO := true
+TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
