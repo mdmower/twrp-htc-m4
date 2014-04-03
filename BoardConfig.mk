@@ -43,6 +43,10 @@ BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01600000
 TARGET_KERNEL_CONFIG := m4_defconfig
 TARGET_KERNEL_SOURCE := kernel/htc/msm8960
 
+# Flags
+COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
+COMMON_GLOBAL_CFLAGS += -DQCOM_BSP
+
 # cat /proc/emmc
 #dev:        size     erasesize name
 #mmcblk0p21: 000ffa00 00000200 "misc"
