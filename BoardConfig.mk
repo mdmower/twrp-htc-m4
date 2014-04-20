@@ -52,24 +52,25 @@ COMMON_GLOBAL_CFLAGS += -DQCOM_BSP
 
 # cat /proc/emmc
 #dev:        size     erasesize name
-#mmcblk0p21: 000ffa00 00000200 "misc"
-#mmcblk0p32: 00fffe00 00000200 "recovery"
-#mmcblk0p31: 01000000 00000200 "boot"
-#mmcblk0p33: 85fffc00 00000200 "system"
-#mmcblk0p28: 00140200 00000200 "local"
-#mmcblk0p34: 29fffe00 00000200 "cache"
-#mmcblk0p35: 2d8000000 00000200 "userdata"
-#mmcblk0p24: 01400000 00000200 "devlog"
-#mmcblk0p26: 00040000 00000200 "pdata"
-#mmcblk0p29: 00010000 00000200 "extra"
+#mmcblk0p22: 000ffa00 00000200 "misc"
+#mmcblk0p34: 00fffe00 00000200 "recovery"
+#mmcblk0p33: 01000000 00000200 "boot"
+#mmcblk0p35: 85fffc00 00000200 "system"
+#mmcblk0p29: 00140200 00000200 "local"
+#mmcblk0p36: 29fffe00 00000200 "cache"
+#mmcblk0p37: 2d8000000 00000200 "userdata"
+#mmcblk0p25: 01400000 00000200 "devlog"
+#mmcblk0p27: 00040000 00000200 "pdata"
+#mmcblk0p30: 00010000 00000200 "extra"
 #mmcblk0p16: 02d00000 00000200 "radio"
 #mmcblk0p17: 00a00000 00000200 "adsp"
 #mmcblk0p15: 00100000 00000200 "dsps"
 #mmcblk0p18: 00500000 00000200 "wcnss"
 #mmcblk0p19: 007ffa00 00000200 "radio_config"
-#mmcblk0p22: 00400000 00000200 "modem_st1"
-#mmcblk0p23: 00400000 00000200 "modem_st2"
-#mmcblk0p30: 01fffc00 00000200 "reserve"
+#mmcblk0p23: 00400000 00000200 "modem_st1"
+#mmcblk0p24: 00400000 00000200 "modem_st2"
+#mmcblk0p32: 01fffc00 00000200 "reserve"
+#mmcblk0p28: 00004000 00000200 "control"
 
 # Filesystem
 BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
@@ -79,7 +80,7 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 13220446208
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 # Vold
-BOARD_VOLD_MAX_PARTITIONS := 36
+BOARD_VOLD_MAX_PARTITIONS := 37
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
 
 # Recovery
