@@ -1,4 +1,7 @@
 on boot
+    setprop usb.vendor 0bb4
+    setprop usb.product.adb 0c02
+    setprop usb.product.mtpadb 0f87
     start choice_fn
 
 service choice_fn /sbin/choice_fn
