@@ -1,9 +1,8 @@
 on boot
     # USB
-    write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 0BB4
-    write /sys/class/android_usb/android0/idProduct 0F87
-    write /sys/class/android_usb/android0/enable ${service.adb.root}
+    setprop usb.vendor 0bb4
+    setprop usb.product.adb 0c02
+    setprop usb.product.mtpadb 0f87
     # CPU
     write /sys/module/rpm_resources/enable_low_power/L2_cache 1
     write /sys/module/rpm_resources/enable_low_power/pxo 1
