@@ -17,6 +17,7 @@ on boot
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "ondemand"
     # Services
     start choice_fn
+    start chargeled
 
 service choice_fn /sbin/choice_fn
     disabled
@@ -28,4 +29,7 @@ service offmode_charging /sbin/offmode_charging
     disabled
 
 service detect_key /sbin/detect_key
+    disabled
+
+service chargeled /sbin/chargeled
     disabled
