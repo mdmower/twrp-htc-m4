@@ -28,16 +28,17 @@ endif
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/recovery/lpm.rc:recovery/root/lpm.rc \
-    $(LOCAL_PATH)/recovery/init.recovery.m4.rc:root/init.recovery.m4.rc \
-    $(LOCAL_PATH)/recovery/choice_fn:recovery/root/sbin/choice_fn \
-    $(LOCAL_PATH)/recovery/power_test:recovery/root/sbin/power_test \
-    $(LOCAL_PATH)/recovery/offmode_charging:recovery/root/sbin/offmode_charging \
-    $(LOCAL_PATH)/recovery/detect_key:recovery/root/sbin/detect_key \
-    $(LOCAL_PATH)/recovery/fstab.m4:recovery/root/fstab.m4
+    $(LOCAL_PATH)/recovery/etc/fstab.m4:recovery/root/fstab.m4 \
+    $(LOCAL_PATH)/recovery/etc/init.recovery.m4.rc:root/init.recovery.m4.rc \
+    $(LOCAL_PATH)/recovery/etc/lpm.rc:recovery/root/lpm.rc \
+    $(LOCAL_PATH)/recovery/sbin/choice_fn:recovery/root/sbin/choice_fn \
+    $(LOCAL_PATH)/recovery/sbin/detect_key:recovery/root/sbin/detect_key \
+    $(LOCAL_PATH)/recovery/sbin/offmode_charging:recovery/root/sbin/offmode_charging \
+    $(LOCAL_PATH)/recovery/sbin/power_test:recovery/root/sbin/power_test
 
 PRODUCT_PACKAGES += \
-    chargeled
+    chargeled \
+    offmode_charging_res_images
 
 $(call inherit-product, build/target/product/full.mk)
 
