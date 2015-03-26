@@ -85,7 +85,7 @@ BOARD_CHARGING_MODE_BOOTING_LPM := /sys/htc_lpm/lpm_mode
 BOARD_SEPOLICY_DIRS += device/htc/m4/sepolicy
 
 # TWRP
-DEVICE_RESOLUTION := 720x1280
+TW_THEME := portrait_hdpi
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
