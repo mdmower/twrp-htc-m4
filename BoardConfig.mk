@@ -38,7 +38,7 @@ TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
 
 # Kernel
 BOARD_KERNEL_BASE := 0x80600000
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=m4 user_debug=31 androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := console=none androidboot.hardware=m4 user_debug=31 androidboot.selinux=permissive
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01600000
 TARGET_KERNEL_CONFIG := m4_defconfig
@@ -48,7 +48,6 @@ TARGET_KERNEL_SOURCE := kernel/htc/msm8960
 BOARD_USES_QCOM_HARDWARE := true
 
 # Flags
-COMMON_GLOBAL_CFLAGS += -DHTCLOG
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 
 # Graphics
@@ -64,6 +63,7 @@ TARGET_POWERHAL_VARIANT := qcom
 
 # Filesystem
 TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_USERIMAGES_USE_F2FS := true
 BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16776704
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1610611712
@@ -82,8 +82,6 @@ BOARD_CHARGING_MODE_BOOTING_LPM := /sys/htc_lpm/lpm_mode
 # SELinux
 -include device/qcom/sepolicy/sepolicy.mk
 
-BOARD_SEPOLICY_DIRS += device/htc/m4/sepolicy
-
 # TWRP
 TW_THEME := portrait_hdpi
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
@@ -98,3 +96,4 @@ BOARD_HAS_NO_REAL_SDCARD := true
 TW_NO_USB_STORAGE := true
 TW_EXTERNAL_STORAGE_PATH := "/usb-otg"
 TW_EXTERNAL_STORAGE_MOUNT_POINT := "usb-otg"
+TW_INCLUDE_NTFS_3G := true
