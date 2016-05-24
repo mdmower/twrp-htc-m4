@@ -1,4 +1,6 @@
-# Copyright (C) 2011 The Android Open-Source Project
+# Copyright (C) 2016 Matthew D. Mower
+# Copyright (C) 2013 The CyanogenMod Project
+# Copyright (C) 2012 The Android Open-Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,5 +14,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/device.mk
+# Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+
+# Inherit from m4 device
+$(call inherit-product, device/htc/m4/device.mk)
+
+# Set those variables here to overwrite the inherited values.
+PRODUCT_BRAND := htc
+PRODUCT_DEVICE := m4
+PRODUCT_MANUFACTURER := HTC
+PRODUCT_MODEL := One Mini
+PRODUCT_NAME := full_m4
